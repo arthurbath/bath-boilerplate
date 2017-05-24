@@ -17,7 +17,7 @@
 			"exports": "always-multiline",
 			"functions": "ignore"
 		}],
-		"eol-last": 0,
+		"eol-last": [2, "never"],
 		"indent": [2, "tab"],
 		"no-multiple-empty-lines": 2,
 		"no-tabs": 0,
