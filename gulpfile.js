@@ -1,5 +1,6 @@
 let del = require('del')
 let gulp = require('gulp')
+let browserSync = require('browser-sync').create()
 let gulpLoadPlugins = require('gulp-load-plugins')
 let $ = gulpLoadPlugins()
 
@@ -40,14 +41,31 @@ gulp.task('buildStyles', done => {
 			.pipe($.cssnano()) // Minify
 		.pipe($.sourcemaps.write('.')) // Write sourcemap
 		.pipe(gulp.dest('build')) // Copy to build
+		.pipe(browserSync.stream({ match: 'build/**/*.css' })) // Send updates to BrowserSync
 	done()
 })
 
 gulp.task('build', gulp.series('clearBuild', 'buildHypertext', 'buildScripts', 'buildStyles'))
 
+// BrowserSync tasks
+gulp.task('startBrowserSync', () => {
+	browserSync.init({
+		open: false,
+		server: {
+			baseDir: 'build',
+		},
+	})
+})
+
+gulp.task('reloadBrowserSync', done => {
+	browserSync.reload()
+	done()
+})
+
+// Watch tasks
 gulp.task('watch', done => {
-	gulp.watch('src/hypertext/**/*.html', gulp.series('buildHypertext'))
-	gulp.watch('src/scripts/**/*.js', gulp.series('buildScripts'))
+	gulp.watch('src/hypertext/**/*.html', gulp.series('buildHypertext', 'reloadBrowserSync'))
+	gulp.watch('src/scripts/**/*.js', gulp.series('buildScripts', 'reloadBrowserSync'))
 	gulp.watch('src/styles/**/*.scss', gulp.series('buildStyles'))
 	done()
 })
@@ -78,4 +96,4 @@ gulp.task('beautifyStyles', done => {
 gulp.task('beautifySrc', gulp.series('beautifyHypertext', 'beautifyScripts', 'beautifyStyles'))
 
 // Task flows
-gulp.task('default', gulp.series('build', 'watch'))
+gulp.task('default', gulp.series('build', gulp.parallel('startBrowserSync', 'watch')))
