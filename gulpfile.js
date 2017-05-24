@@ -75,14 +75,14 @@ gulp.task('watch', done => {
 gulp.task('beautifyHypertext', done => {
 	gulp.src(['src/hypertext/**/*.html', '!**/vendor/**'])
 		.pipe($.jsbeautifier()) // Beautify src
-		.pipe(gulp.dest('src')) // Replace src
+		.pipe(gulp.dest('src/hypertext')) // Replace src
 	done()
 })
 
 gulp.task('beautifyScripts', done => {
 	gulp.src(['src/scripts/**/*.js', '!**/vendor/**'])
 		.pipe($.jsbeautifier()) // Beautify src
-		.pipe(gulp.dest('src')) // Replace src
+		.pipe(gulp.dest('src/scripts')) // Replace src
 	done()
 })
 
@@ -90,7 +90,7 @@ gulp.task('beautifyStyles', done => {
 	gulp.src(['src/styles/**/*.scss', '!**/vendor/**'])
 		.pipe($.csscomb()) // Beautify src
 		.pipe($.stylefmt()) // Beautify src
-		.pipe(gulp.dest('src')) // Replace src
+		.pipe(gulp.dest('src/styles')) // Replace src
 	done()
 })
 
