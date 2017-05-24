@@ -50,6 +50,7 @@ gulp.task('build', gulp.series('clearBuild', 'buildHypertext', 'buildScripts', '
 // BrowserSync tasks
 gulp.task('startBrowserSync', () => {
 	browserSync.init({
+		notify: false,
 		open: false,
 		server: {
 			baseDir: 'build',
