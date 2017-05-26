@@ -10,6 +10,9 @@
 		"promise"
 	],
 	"rules": {
+		"brace-style": [2, "stroustrup", {
+			"allowSingleLine": true
+		}],
 		"comma-dangle": ["error", {
 			"arrays": "never",
 			"objects": "always-multiline",
