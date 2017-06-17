@@ -1,13 +1,9 @@
 {
 	"parser": "babel-eslint",
 	"extends": "standard",
-	"globals": {
-		"_": false,
-		"$": false
-	},
 	"plugins": [
-		"standard",
-		"promise"
+		"promise",
+		"standard"
 	],
 	"rules": {
 		"brace-style": [2, "stroustrup", {

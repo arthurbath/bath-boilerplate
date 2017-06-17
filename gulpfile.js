@@ -1,8 +1,9 @@
 let del = require('del')
-let gulp = require('gulp')
 let browserSync = require('browser-sync').create()
-let gulpLoadPlugins = require('gulp-load-plugins')
-let $ = gulpLoadPlugins()
+let webpackStream = require('webpack-stream')
+let UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+let gulp = require('gulp')
+let $ = require('gulp-load-plugins')()
 
 // Build tasks
 gulp.task('clearBuild', done => {
@@ -18,16 +19,28 @@ gulp.task('buildHypertext', done => {
 })
 
 gulp.task('buildScripts', done => {
-	gulp.src(['src/scripts/vendor/*.js', 'src/scripts/**/*.js'])
-		.pipe($.sourcemaps.init()) // Initialize sourcemap
-			.pipe($.concat({ path: 'script.js' })) // Concatenate all
-			.pipe($.babel({
-				presets: ['es2015'],
-				compact: true,
-			})) // Transpile
-			.on('error', console.error.bind(console)) // Catch transpilation error
-			.pipe($.uglify()) // Minify
-		.pipe($.sourcemaps.write('.')) // Write sourcemap
+	gulp.src('src/scripts/**/*.js')
+		.pipe(webpackStream({
+			devtool: 'source-map', // Generate sourcemap
+			module: {
+				loaders: [{
+					loader: 'babel-loader', // Transpile ES6
+					exclude: /node_modules/,
+					query: {
+						presets: ['es2015'],
+						compact: true,
+					},
+				}],
+			},
+			output: {
+				filename: 'script.js',
+			},
+			plugins: [
+				new UglifyJSPlugin({
+					sourceMap: true,
+				})
+			],
+		}))
 		.pipe(gulp.dest('build')) // Copy to build
 	done()
 })
@@ -35,10 +48,11 @@ gulp.task('buildScripts', done => {
 gulp.task('buildStyles', done => {
 	gulp.src(['src/styles/**/*.scss', '!**/vendor/**'])
 		.pipe($.sourcemaps.init()) // Initialize sourcemap
-			.pipe($.sass() // Transpile
-			.on('error', $.sass.logError)) // Catch transpilation error
-			.pipe($.autoprefixer()) // Auto-prefix properties for browser support
-			.pipe($.cssnano()) // Minify
+		.pipe($.sass() // Transpile
+			.on('error', $.sass.logError) // Catch transpilation error
+		)
+		.pipe($.autoprefixer()) // Auto-prefix properties for browser support
+		.pipe($.cssnano()) // Minify
 		.pipe($.sourcemaps.write('.')) // Write sourcemap
 		.pipe(gulp.dest('build')) // Copy to build
 	done()
