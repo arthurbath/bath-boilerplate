@@ -1,5 +1,4 @@
 @import 'normalize.css/normalize.css';
-
 $fail-color: #bb0000;
 $success-color: #00bb00;
 
@@ -12,11 +11,11 @@ $success-color: #00bb00;
 }
 
 .styles-fail {
-	color: $fail-color;
 	display: none;
+	color: $fail-color;
 }
 
 .styles-success {
-	color: $success-color;
 	display: inline !important;
+	color: $success-color;
 }
