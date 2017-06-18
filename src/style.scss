@@ -21,5 +21,11 @@ $success-color: #00bb00;
 		&--styles.test__case--pass {
 			display: inline !important;
 		}
+
+		&--images {
+			height: 1.4em;
+			line-height: 1;
+			vertical-align: -0.35em;
+		}
 	}
 }

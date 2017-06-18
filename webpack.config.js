@@ -54,6 +54,26 @@ module.exports = {
 					options: { sourceMap: true },
 				}],
 			}),
+		}, {
+			test: /\.(png|svg|jpe?g|gif)$/,
+			use: [{
+				loader: 'file-loader',
+				options: {
+					'name': '[name].[ext]',
+				},
+			}, {
+				loader: 'image-webpack-loader',
+				query: {
+					progressive: true,
+					optimizationLevel: 3,
+					interlaced: false,
+					quality: 90,
+					pngquant: {
+						quality: '65-90',
+						speed: 4,
+					},
+				},
+			}],
 		}],
 	},
 	output: {
