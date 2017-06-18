@@ -7,7 +7,7 @@ const extractStyles = new ExtractTextPlugin('style.css')
 
 module.exports = {
 	devtool: 'source-map', // Generate sourcemap
-	entry: './src/scripts/script.js',
+	entry: './src/script.js',
 	module: {
 		rules: [{
 			test: /\.html$/, // Hypertext
