@@ -35,6 +35,10 @@
   "pre-commit": [
     "beautifySrc"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arthurbath/bath-boilerplate"
+  },
   "scripts": {
     "gulp": "gulp",
     "beautifySrc": "gulp beautifySrc"
