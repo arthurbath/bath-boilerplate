@@ -4,6 +4,6 @@ import css from './style.scss' // eslint-disable-line no-unused-vars
 import $ from 'jquery'
 
 $(document).ready(() => {
-	$('.scripts-fail').hide()
-	$('.scripts-success').show()
+	$('.test__case--scripts.test__case--fail').hide()
+	$('.test__case--scripts.test__case--pass').show()
 })
