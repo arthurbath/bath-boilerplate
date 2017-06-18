@@ -64,10 +64,14 @@ module.exports = {
 			}, {
 				loader: 'image-webpack-loader',
 				query: {
-					progressive: true,
-					optimizationLevel: 3,
-					interlaced: false,
 					quality: 90,
+					progressive: true,
+					optipng: {
+						optimizationLevel: 3,
+					},
+					gifsicle: {
+						interlaced: false,
+					},
 					pngquant: {
 						quality: '65-90',
 						speed: 4,
