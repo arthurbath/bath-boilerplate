@@ -1,6 +1,7 @@
 const path = require('path')
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
 	devtool: 'source-map', // Generate sourcemap
@@ -17,19 +18,30 @@ module.exports = {
 		}, {
 			exclude: /node_modules/,
 			test: /\.scss$/,
-			use: [{
-				loader: 'style-loader', // Create style nodes from JS strings
-			}, {
-				loader: 'css-loader', // Translate CSS into CommonJS
-				options: {
-					sourceMap: true,
-				},
-			}, {
-				loader: 'sass-loader', // Compile SCSS to CSS
-				options: {
-					sourceMap: true,
-				},
-			}],
+			use: ExtractTextPlugin.extract({
+				fallback: 'style-loader',
+				use: [{
+					loader: 'css-loader', // Translate CSS into CommonJS
+					options: {
+						sourceMap: true,
+					},
+				}, {
+					loader: 'postcss-loader', // PostCSS processing
+					options: {
+						plugins: loader => [
+							require('postcss-import')(), // Collapse imports
+							require('postcss-cssnext')(), // Handle future CSS syntax, autoprefixing
+							require('cssnano')() // Minify CSS
+						],
+						sourceMap: true,
+					},
+				}, {
+					loader: 'sass-loader', // Compile SCSS to CSS
+					options: {
+						sourceMap: true,
+					},
+				}],
+			}),
 		}],
 	},
 	output: {
@@ -40,6 +52,7 @@ module.exports = {
 		new CleanWebpackPlugin(['build']),
 		new UglifyJSPlugin({
 			sourceMap: true,
-		})
+		}),
+		new ExtractTextPlugin('style.css')
 	],
 }

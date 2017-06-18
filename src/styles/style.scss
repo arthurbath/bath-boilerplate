@@ -1,9 +1,22 @@
-@import '~normalize.css/normalize.css';
+@import 'normalize.css/normalize.css';
+
+$fail-color: #bb0000;
+$success-color: #00bb00;
+
+.scripts-fail {
+	color: $fail-color;
+}
+
+.scripts-success {
+	color: $success-color;
+}
 
 .styles-fail {
+	color: $fail-color;
 	display: none;
 }
 
 .styles-success {
+	color: $success-color;
 	display: inline !important;
 }
