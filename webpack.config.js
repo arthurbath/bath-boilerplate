@@ -8,16 +8,32 @@ module.exports = {
 	entry: './src/scripts/script.js',
 	module: {
 		rules: [{
+			test: /\.html$/, // Hypertext
+			exclude: /node_modules/,
+			use: [{
+				loader: 'file-loader',
+				query: {
+					publicPath: './build',
+					name: '[name].[ext]',
+				},
+			},
+			'extract-loader', {
+				loader: 'html-loader',
+				options: {
+					minimize: true,
+				},
+			}],
+		}, {
+			test: /\.js$/, // Scripts
 			exclude: /node_modules/,
 			loader: 'babel-loader',
 			query: {
 				presets: ['es2015'],
 				compact: true,
 			},
-			test: /\.js$/,
 		}, {
+			test: /\.scss$/, // Styles
 			exclude: /node_modules/,
-			test: /\.scss$/,
 			use: ExtractTextPlugin.extract({
 				fallback: 'style-loader',
 				use: [{
