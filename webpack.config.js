@@ -2,7 +2,6 @@ const path = require('path')
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 
 const extractStyles = new ExtractTextPlugin('style.css')
 
@@ -20,18 +19,13 @@ module.exports = (env = {}) => ({
 					name: '[name].[ext]',
 				},
 			},
-			'extract-loader', {
-				loader: 'html-loader',
-				options: { minimize: true },
-			}],
+			'extract-loader',
+			'html-loader'],
 		}, {
 			test: /\.js$/, // Scripts
 			exclude: /node_modules/,
 			loader: 'babel-loader',
-			query: {
-				presets: ['es2015'],
-				compact: true,
-			},
+			query: { presets: ['es2015'] },
 		}, {
 			test: /\.scss$/, // Styles
 			exclude: /node_modules/,
@@ -45,8 +39,7 @@ module.exports = (env = {}) => ({
 					options: {
 						plugins: loader => [
 							require('postcss-import')(), // Collapse imports
-							require('postcss-cssnext')(), // Handle future CSS syntax, autoprefixing
-							require('cssnano')({ autoprefixer: false }) // Minify CSS
+							require('postcss-cssnext')() // Handle future CSS syntax, autoprefixing
 						],
 						sourceMap: true,
 					},
@@ -88,7 +81,6 @@ module.exports = (env = {}) => ({
 	plugins: [
 		new webpack.NoEmitOnErrorsPlugin(),
 		new CleanWebpackPlugin(['build']),
-		new UglifyJSPlugin({ sourceMap: true }),
 		extractStyles
 	],
 })
