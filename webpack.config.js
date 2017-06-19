@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
@@ -85,6 +86,7 @@ module.exports = {
 		path: path.resolve(__dirname, 'build'),
 	},
 	plugins: [
+		new webpack.NoEmitOnErrorsPlugin(),
 		new CleanWebpackPlugin(['build']),
 		new UglifyJSPlugin({ sourceMap: true }),
 		extractStyles
