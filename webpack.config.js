@@ -6,8 +6,8 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 
 const extractStyles = new ExtractTextPlugin('style.css')
 
-module.exports = {
-	devtool: 'source-map', // Generate sourcemap
+module.exports = (env = {}) => ({
+	devtool: env.prod ? 'source-map' : 'eval-source-map', // Generate sourcemap (more comprehensive, slower map for prod)
 	entry: './src/script.js',
 	module: {
 		rules: [{
@@ -91,4 +91,4 @@ module.exports = {
 		new UglifyJSPlugin({ sourceMap: true }),
 		extractStyles
 	],
-}
+})
