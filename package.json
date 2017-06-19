@@ -1,6 +1,19 @@
 {
 	"author": "Arthur Bath",
+	"name": "bath-boilerplate",
 	"description": "Bath Boilerplate",
+	"version": "1.1.0",
+	"license": "ISC",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/arthurbath/bath-boilerplate"
+	},
+	"main": "index.js",
+	"dependencies": {
+		"jquery": "^3.2.1",
+		"lodash": "^4.17.4",
+		"normalize.css": "^7.0.0"
+	},
 	"devDependencies": {
 		"autoprefixer": "^7.1.1",
 		"babel-core": "^6.25.0",
@@ -39,25 +52,13 @@
 		"webpack": "^2.6.1",
 		"webpack-dev-server": "^2.4.5"
 	},
-	"license": "ISC",
-	"main": "index.js",
-	"name": "bath-boilerplate",
-	"pre-commit": [
-		"beautifySrc"
-	],
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/arthurbath/bath-boilerplate"
-	},
 	"scripts": {
 		"beautifySrc": "gulp beautifySrc",
-		"build": "webpack",
+		"buildDev": "webpack",
+		"buildProd": "webpack -p --env.prod",
 		"serve": "webpack-dev-server"
 	},
-	"version": "1.0.0",
-	"dependencies": {
-		"jquery": "^3.2.1",
-		"lodash": "^4.17.4",
-		"normalize.css": "^7.0.0"
-	}
+	"pre-commit": [
+		"beautifySrc"
+	]
 }
