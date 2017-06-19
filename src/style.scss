@@ -1,10 +1,13 @@
 @import 'normalize.css/normalize.css';
+
 $fail-color: #bb0000;
 $success-color: #00bb00;
 
 .test {
+	display: flex;
 
 	&__case {
+		margin-left: 0.5rem;
 
 		&--pass {
 			color: $success-color;
@@ -23,9 +26,8 @@ $success-color: #00bb00;
 		}
 
 		&--images {
-			height: 1.4em;
-			vertical-align: -0.35em;
-			line-height: 1;
+			height: 0.72em;
+			margin-top: 0.2em;
 		}
 	}
 }
