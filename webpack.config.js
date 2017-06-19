@@ -46,7 +46,7 @@ module.exports = {
 						plugins: loader => [
 							require('postcss-import')(), // Collapse imports
 							require('postcss-cssnext')(), // Handle future CSS syntax, autoprefixing
-							require('cssnano')() // Minify CSS
+							require('cssnano')({ autoprefixer: false }) // Minify CSS
 						],
 						sourceMap: true,
 					},
