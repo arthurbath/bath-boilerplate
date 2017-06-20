@@ -12,15 +12,17 @@ module.exports = (env = {}) => ({
 		rules: [{
 			test: /\.html$/, // Hypertext
 			exclude: /node_modules/,
-			use: [{
-				loader: 'file-loader',
-				query: {
-					publicPath: './build',
-					name: '[name].[ext]',
+			use: [
+				{
+					loader: 'file-loader',
+					query: {
+						publicPath: './build',
+						name: '[name].[ext]',
+					},
 				},
-			},
-			'extract-loader',
-			'html-loader'],
+				'extract-loader',
+				'html-loader'
+			],
 		}, {
 			test: /\.js$/, // Scripts
 			exclude: /node_modules/,

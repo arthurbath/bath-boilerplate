@@ -1,6 +1,6 @@
 # Bath Boilerplate
 
-A boilerplate for web projects built with Node/NPM, Gulp, and Webpack.
+A boilerplate for web projects built with Node/NPM and Webpack.
 
 * Develop in ES6, Sass/SCSS, and future CSS syntax. The bundler converts future syntax into code that will run seamlessly in contemporary browsers. Sourcemaps are generated for easy debugging.
 * Develop swiftly with automatic browser reloading. The development server detects changes to your source files and injects them into your browser.
@@ -55,7 +55,7 @@ Git ignore configuration
 
 * Lists filenames and blobs to be ignored by Git
 
-### Dependency Management, Bundling, and Task Running
+### Dependency Management and Bundling
 
 #### .package.json
 NPM manifest
@@ -78,36 +78,3 @@ PostCSS configuration
 
 * Required by PostCSS (part of Webpack style bundling)
 * PostCSS configuration handled in webpack.config.js
-
-#### gulpfile.js
-Gulp task manifest
-
-* Defines development tasks run by Gulp
-
-### Linting and Formatting
-
-#### .editorconfig
-EditorConfig configuration
-
-* Informs text editors to conform to certain syntax rules
-
-#### .eslintrc.json
-ESLint configuration
-
-* Defines JavaScript syntax rules that can be enforced by a text editor plugin
-
-#### .stylelintrc.json
-Stylelint configuration
-
-* Defines CSS/SCSS syntax rules that can be enforced by a text editor plugin
-* Defines format used for beautifying SCSS source files
-
-#### .jsbeautifyrc
-JSBeautify configuration
-
-* Defines format used for beautifying JavaScript source files
-
-#### .csscomb.json
-CSSComb configuration
-
-* Defines property ordering inside CSS rulesets that is applied when beautifying SCSS
