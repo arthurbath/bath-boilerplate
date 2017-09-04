@@ -52,6 +52,7 @@ module.exports = (env = {}) => ({
 			}),
 		}, {
 			test: /\.(png|svg|jpe?g|gif)$/,
+			exclude: /node_modules/,
 			use: [{
 				loader: 'file-loader',
 				options: {
@@ -61,7 +62,9 @@ module.exports = (env = {}) => ({
 				loader: 'image-webpack-loader',
 				query: {
 					quality: 90,
-					progressive: true,
+					mozjpeg: {
+						progressive: true,
+					},
 					optipng: {
 						optimizationLevel: 3,
 					},
@@ -76,13 +79,16 @@ module.exports = (env = {}) => ({
 			}],
 		}],
 	},
+	target: 'web',
 	output: {
 		filename: 'script.js',
 		path: path.resolve(__dirname, 'build'),
 	},
 	plugins: [
 		new webpack.NoEmitOnErrorsPlugin(),
-		new CleanWebpackPlugin(['build']),
+		new CleanWebpackPlugin(['build'], {
+			'verbose': false,
+		}),
 		extractStyles
 	],
 })
