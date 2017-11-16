@@ -21,7 +21,7 @@ A boilerplate for web projects built with Node/NPM and Webpack.
 ### Personalize
 1. Delete the *README.md* file or overwrite it with your own.
 1. Replace the *LICENSE.md* file with your project's license.
-1. Delete the *.git* directory. Open a *Terminal* windows and run `git init` to start your own repository.
+1. Delete the *.git* directory. Open a *Terminal* window and run `git init` to start your own repository.
 
 ### Start the Development Server
 1. Open a *Terminal* window.
@@ -33,7 +33,7 @@ A boilerplate for web projects built with Node/NPM and Webpack.
 ### Build for Distribution
 1. Open a *Terminal* window.
 1. `cd` to your project directory.
-1. Run `npm run buildProd`. The bundler will drop your project's concatenated, minified, production-ready files into its *build* directory.
+1. Run `npm run build-prod`. The bundler will drop your project's concatenated, minified, production-ready files into its *build* directory.
 
 ## File Structure
 
@@ -51,16 +51,14 @@ Browser-ready project files
 Git repository
 
 #### .gitignore
-Git ignore configuration
-
-* Lists filenames and blobs to be ignored by Git
+Listing of files for Git to ignore
 
 ### Dependency Management and Bundling
 
 #### .package.json
 NPM manifest
 
-* Defines which packages are required for development
+* Defines which packages are required for development and production
 * Defines scripts for interacting with packages
 
 #### node_modules
